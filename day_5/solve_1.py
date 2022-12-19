@@ -1,10 +1,12 @@
 line = '    [S] [C]         [Z]            '
 line2 = '[F] [J] [P]         [T]     [N]    '
 
-## process each line with sliding window?
-crates = {x:[] for x in range(1,10)}
+def process_move(line):
+    pass
+
 
 def process_line(line):
+    print(f"Line to process: {line}")
     idx = 0
     tower = 1
     while idx < len(line):
@@ -21,6 +23,21 @@ def process_line(line):
             tower += 1
         idx += 4
 
-process_line(line)
-process_line(line2)
+## process each line with sliding window?
+crates = {x:[] for x in range(1,10)}
+parse_input = True
+with open("input.txt", 'r') as f:
+    for line in f:
+        if parse_input:
+            if line.startswith(' 1'):
+                parse_input = False
+            else:
+                process_line(line)
+
+        else:
+            if line == '':
+                pass
+            else:
+                process_move(line)
 print(crates)
+
