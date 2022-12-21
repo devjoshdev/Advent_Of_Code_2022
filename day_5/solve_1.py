@@ -2,23 +2,23 @@ line = '    [S] [C]         [Z]            '
 line2 = '[F] [J] [P]         [T]     [N]    '
 
 def process_move(line):
-    pass
+    line = line.strip().split(" ")
+    ops = [int(line[i]) for i in range(1, len(line), 2)]
+    print(ops)
+
 
 
 def process_line(line):
-    print(f"Line to process: {line}")
     idx = 0
     tower = 1
     while idx < len(line):
         col = line[idx:idx+4]
         stripped = col.strip()
         if stripped == '':
-            print('skipped', tower)
             tower += 1
             pass
         else:
             letter = stripped.split('[')[1][0]
-            print(f"{letter}, not skipped {tower}")
             crates[tower].append(letter) 
             tower += 1
         idx += 4
@@ -35,9 +35,9 @@ with open("input.txt", 'r') as f:
                 process_line(line)
 
         else:
-            if line == '':
+            if line.strip() == '':
                 pass
             else:
                 process_move(line)
-print(crates)
 
+## TODO: to process_move, split by ' ' and find the numbers? 
