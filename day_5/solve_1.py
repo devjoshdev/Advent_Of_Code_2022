@@ -4,7 +4,9 @@ line2 = '[F] [J] [P]         [T]     [N]    '
 def process_move(line):
     line = line.strip().split(" ")
     ops = [int(line[i]) for i in range(1, len(line), 2)]
-    print(ops)
+    for _ in range(ops[0]):
+        crates[ops[2]].insert(0, crates[ops[1]].pop(0))
+
 
 
 
@@ -40,4 +42,6 @@ with open("input.txt", 'r') as f:
             else:
                 process_move(line)
 
-## TODO: to process_move, split by ' ' and find the numbers? 
+answer = ''.join([crate[0] for crate in crates.values()])
+print(answer)
+print(crates)
